@@ -17,12 +17,13 @@ const Register = () => {
   const [role, setRole] = useState("");
 
   const { isAuthorized, setIsAuthorized, user, setUser } = useContext(Context);
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/user/register",
+        `${BACKEND_URL}/api/v1/user/register`,
         { name, phone, email, role, password },
         {
           headers: {

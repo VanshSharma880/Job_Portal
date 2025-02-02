@@ -3,16 +3,19 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../main";
+
+
 const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState({});
   const navigateTo = useNavigate();
-
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+  console.log(BACKEND_URL);
   const { isAuthorized, user } = useContext(Context);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/v1/job/${id}`, {
+      .get(`${BACKEND_URL}/api/v1/job/${id}`, {
         withCredentials: true,
       })
       .then((res) => {

@@ -7,10 +7,12 @@ const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const { isAuthorized } = useContext(Context);
   const navigateTo = useNavigate();
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+
   useEffect(() => {
     try {
       axios
-        .get("http://localhost:4000/api/v1/job/getall", {
+        .get(`${BACKEND_URL}/api/v1/job/getall`, {
           withCredentials: true,
         })
         .then((res) => {
