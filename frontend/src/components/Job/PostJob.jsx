@@ -15,6 +15,8 @@ const PostJob = () => {
   const [fixedSalary, setFixedSalary] = useState("");
   const [salaryType, setSalaryType] = useState("default");
 
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+
   const { isAuthorized, user } = useContext(Context);
 
   const handleJobPost = async (e) => {
